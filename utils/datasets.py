@@ -932,7 +932,7 @@ def dataset_stats(path='coco128.yaml', autodownload=False, verbose=False, profil
             stats[split] = None  # i.e. no test set
             continue
         x = []
-        dataset = LoadImagesAndLabels(data[split], augment=False, rect=True)  # load dataset
+        dataset = LoadImagesAndLabels(data[split])  # load dataset
         for label in tqdm(dataset.labels, total=dataset.n, desc='Statistics'):
             x.append(np.bincount(label[:, 0].astype(int), minlength=data['nc']))
         x = np.array(x)  # shape(128x80)
