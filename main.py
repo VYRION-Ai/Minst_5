@@ -8,5 +8,5 @@ import streamlit as st
 # working with sample data.
 import numpy as np
 import pandas as pd
-streamlit run first_app.py
+st.title('My first app')
 
