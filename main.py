@@ -5,6 +5,10 @@ import yaml
 import ast
 import streamlit as st
 import requests 
+from urllib.request import urlopen
+from io import BytesIO
+from zipfile import ZipFile
+
 # To make things easier later, we're also importing numpy and pandas for
 # working with sample data.
 import numpy as np
@@ -19,9 +23,6 @@ df = pd.DataFrame({
 df
 
 
-from urllib.request import urlopen
-from io import BytesIO
-from zipfile import ZipFile
 
 
 def download_and_unzip(url, extract_to='.'):
@@ -29,4 +30,4 @@ def download_and_unzip(url, extract_to='.'):
     zipfile = ZipFile(BytesIO(http_response.read()))
     zipfile.extractall(path=extract_to)
     
-download_and_unzip("https://www.dropbox.com/s/0da6paqyt6jg0x1/video2.zip?dl=0")
+download_and_unzip("https://www.dropbox.com/s/6zu18goqoqqitlr/best.pt?dl=0")
