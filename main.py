@@ -9,6 +9,8 @@ from urllib.request import urlopen
 from io import BytesIO
 from zipfile import ZipFile
 
+pip install cv2
+
 # To make things easier later, we're also importing numpy and pandas for
 # working with sample data.
 import numpy as np
