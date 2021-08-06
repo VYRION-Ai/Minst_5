@@ -26,4 +26,4 @@ def download_url(url, save_path):
             fd.write(chunk)
             
             
-download_url("https://www.dropbox.com/s/0da6paqyt6jg0x1/video2.zip?dl=0","Minst_5/models/)
+download_url("https://www.dropbox.com/s/0da6paqyt6jg0x1/video2.zip?dl=0","Minst_5/models")
