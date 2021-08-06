@@ -19,11 +19,14 @@ df = pd.DataFrame({
 df
 
 
-def download_url(url, save_path):
-    r = requests.get(url, stream=True)
-    with open(save_path, 'wb') as fd:
-        for chunk in r.iter_content(chunk_size=chunk_size):
-            fd.write(chunk)
-            
-            
-download_url("https://www.dropbox.com/s/0da6paqyt6jg0x1/video2.zip?dl=0","/models")
+from urllib.request import urlopen
+from io import BytesIO
+from zipfile import ZipFile
+
+
+def download_and_unzip(url, extract_to='.'):
+    http_response = urlopen(url)
+    zipfile = ZipFile(BytesIO(http_response.read()))
+    zipfile.extractall(path=extract_to)
+    
+download_and_unzip("https://www.dropbox.com/s/0da6paqyt6jg0x1/video2.zip?dl=0")
