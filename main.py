@@ -24,4 +24,6 @@ def download_url(url, save_path):
     with open(save_path, 'wb') as fd:
         for chunk in r.iter_content(chunk_size=chunk_size):
             fd.write(chunk)
-download_url("https://www.dropbox.com/s/0da6paqyt6jg0x1/video2.zip?dl=0",a)
+            
+            
+download_url("https://www.dropbox.com/s/0da6paqyt6jg0x1/video2.zip?dl=0","Minst_5/models)
