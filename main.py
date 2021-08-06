@@ -23,11 +23,19 @@ df = pd.DataFrame({
 df
 
 
+import cv2
 
+cap = cv2.VideoCapture(0)
 
-def download_and_unzip(url, extract_to='.'):
-    http_response = urlopen(url)
-    zipfile = ZipFile(BytesIO(http_response.read()))
-    zipfile.extractall(path=extract_to)
-    
-download_and_unzip("https://www.dropbox.com/s/6zu18goqoqqitlr/best.pt?dl=0")
+# Check if the webcam is opened correctly
+if not cap.isOpened():
+    raise IOError("Cannot open webcam")
+
+while True:
+    ret, frame = cap.read()
+    frame = cv2.resize(frame, None, fx=0.5, fy=0.5, interpolation=cv2.INTER_AREA)
+    cv2.imshow('Input', frame)
+
+    c = cv2.waitKey(1)
+    if c == 27:
+        break
