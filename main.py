@@ -9,7 +9,7 @@ from urllib.request import urlopen
 from io import BytesIO
 from zipfile import ZipFile
 
-
+pip install streamlit-webrtc
 
 
 # To make things easier later, we're also importing numpy and pandas for
