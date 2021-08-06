@@ -10,6 +10,7 @@ from io import BytesIO
 from zipfile import ZipFile
 
 
+cd
 
 # To make things easier later, we're also importing numpy and pandas for
 # working with sample data.
