@@ -9,7 +9,7 @@ from urllib.request import urlopen
 from io import BytesIO
 from zipfile import ZipFile
 
-pip install cv2
+
 
 # To make things easier later, we're also importing numpy and pandas for
 # working with sample data.
@@ -25,19 +25,4 @@ df = pd.DataFrame({
 df
 
 
-import cv2
 
-cap = cv2.VideoCapture(0)
-
-# Check if the webcam is opened correctly
-if not cap.isOpened():
-    raise IOError("Cannot open webcam")
-
-while True:
-    ret, frame = cap.read()
-    frame = cv2.resize(frame, None, fx=0.5, fy=0.5, interpolation=cv2.INTER_AREA)
-    cv2.imshow('Input', frame)
-
-    c = cv2.waitKey(1)
-    if c == 27:
-        break
