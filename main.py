@@ -18,7 +18,7 @@ import numpy as np
 import pandas as pd
 import os
 cwd = os.getcwd()
-st.title('My first app')
+st.title(cwd)
 
 df = pd.DataFrame({
   'first column': [1, 2, 3, 4],
