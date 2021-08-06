@@ -20,7 +20,7 @@ import os
 cwd = os.getcwd()
 st.title(cwd)
 # Print the current working directory
-st.print("Current working directory: {0}".format(cwd))
+print("Current working directory: {0}".format(cwd))
 
 # Print the type of the returned object
-st.print("os.getcwd() returns an object of type: {0}".format(type(cwd)))
+print("os.getcwd() returns an object of type: {0}".format(type(cwd)))
