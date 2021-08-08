@@ -6,11 +6,10 @@ import pandas as pd
 import numpy as np
 import os, urllib, cv2
 
-        with open(file_path, "wb") as output_file:
             with urllib.request.urlopen("https://pjreddie.com/media/files/yolov3.weights"["url"]) as response:
                 length = int(response.info()["Content-Length"])
-                counter = 0.0
-                MEGABYTES = 2.0 ** 20.0
+          
+        
                 while True:
                     data = response.read(8192)
                     if not data:
