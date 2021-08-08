@@ -6,9 +6,8 @@ import pandas as pd
 import numpy as np
 import os, urllib, cv2
 
-try:
         weights_warning = st.warning("Downloading %s..." % file_path)
-        progress_bar = st.progress(0)
+  
         with open(file_path, "wb") as output_file:
             with urllib.request.urlopen("https://pjreddie.com/media/files/yolov3.weights"["url"]) as response:
                 length = int(response.info()["Content-Length"])
@@ -25,6 +24,3 @@ try:
                     weights_warning.warning("Downloading %s... (%6.2f/%6.2f MB)" %
                         (file_path, counter / MEGABYTES, length / MEGABYTES))
                     progress_bar.progress(min(counter / length, 1.0))
-
-
-
