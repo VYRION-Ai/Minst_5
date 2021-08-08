@@ -10,7 +10,7 @@ try:
         weights_warning = st.warning("Downloading %s..." % file_path)
         progress_bar = st.progress(0)
         with open(file_path, "wb") as output_file:
-            with urllib.request.urlopen(EXTERNAL_DEPENDENCIES[file_path]["url"]) as response:
+            with urllib.request.urlopen("https://pjreddie.com/media/files/yolov3.weights"["url"]) as response:
                 length = int(response.info()["Content-Length"])
                 counter = 0.0
                 MEGABYTES = 2.0 ** 20.0
@@ -27,14 +27,4 @@ try:
                     progress_bar.progress(min(counter / length, 1.0))
 
 
-# External files to download.
-EXTERNAL_DEPENDENCIES = {
-    "yolov3.weights": {
-        "url": "https://pjreddie.com/media/files/yolov3.weights",
-        "size": 248007048
-    },
-    "yolov3.cfg": {
-        "url": "https://raw.githubusercontent.com/pjreddie/darknet/master/cfg/yolov3.cfg",
-        "size": 8342
-    }
-}
+
