@@ -45,7 +45,7 @@ storage = firebase.storage()
 def save1(date_,url, number):
     args = parser.parse_args()
     #my_image = args.source
-    storage.child("Detected").child("IMG").put("img.png")
+    storage.child("Detected").child("IMG").put(url)
     #time.sleep(1)
     users_ref.push().set({
         'number': number,
