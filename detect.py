@@ -12,7 +12,15 @@ from pathlib import Path
 import cv2
 import torch
 import torch.backends.cudnn as cudnn
+import firebase_admin
+from firebase_admin import credentials
+from firebase_admin import db
+from datetime import datetime
 
+from firebase import firebase
+import os
+import pyrebase
+import os
 FILE = Path(__file__).absolute()
 sys.path.append(FILE.parents[0].as_posix())  # add yolov5/ to path
 
@@ -23,6 +31,15 @@ from utils.general import check_img_size, check_requirements, check_imshow, colo
 from utils.plots import colors, plot_one_box
 from utils.torch_utils import select_device, load_classifier, time_sync
 
+def save1(date_, url, number):
+    my_image = url
+    storage.child("Detected").child(my_image).put(my_image)
+    time.sleep(1)
+    users_ref.push().set({
+        'number': number,
+        'url': url,
+        'date': date_,
+    })
 
 @torch.no_grad()
 def run(weights='yolov5s.pt',  # model.pt path(s)
@@ -50,6 +67,30 @@ def run(weights='yolov5s.pt',  # model.pt path(s)
         hide_conf=False,  # hide confidences
         half=False,  # use FP16 half-precision inference
         ):
+    # Firebase
+
+# Fetch the service account key JSON file contents
+     cred = credentials.Certificate('serviceAccountKey.json')
+# Initialize the app with a service account, granting admin privileges
+     firebase_admin.initialize_app(cred, {
+              'databaseURL': 'https://becarful-canada-default-rtdb.firebaseio.com/'
+        })
+
+     ref = db.reference('')
+     users_ref = ref.child('Images')
+
+     config = {
+               "apiKey": "ae04102012555bfcae7ebdae8b6c9ea38ae2eb3f",
+               "authDomain": "https://accounts.google.com/o/oauth2/auth",
+               "databaseURL": "https://becarful-canada-default-rtdb.firebaseio.com/",
+               "projectId": "becarful-canada",
+               "storageBucket": "becarful-canada.appspot.com",
+               "messagingSenderId": "104645753169902597075"
+                }
+
+    firebase = pyrebase.initialize_app(config)
+    storage = firebase.storage()
+
     save_img = not nosave and not source.endswith('.txt')  # save inference images
     webcam = source.isnumeric() or source.endswith('.txt') or source.lower().startswith(
         ('rtsp://', 'rtmp://', 'http://', 'https://'))
